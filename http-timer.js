@@ -10,7 +10,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const defer_to_connect_1 = require("defer-to-connect");
 const util_1 = require("util");
-const nodejsMajorVersion = Number(process.versions.node.split('.')[0]);
 const timer = (request) => {
     if (request.timings) {
         return request.timings;
@@ -56,7 +55,7 @@ const timer = (request) => {
         timings.abort = Date.now();
         // Let the `end` response event be responsible for setting the total phase,
         // unless the Node.js major version is >= 13.
-        if (!timings.response || nodejsMajorVersion >= 13) {
+        if (!timings.response) {
             timings.phases.total = Date.now() - timings.start;
         }
     };
